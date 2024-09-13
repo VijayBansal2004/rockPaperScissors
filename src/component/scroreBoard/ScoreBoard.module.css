@@ -1,0 +1,14 @@
+.scroreBoardContainer{
+    background-color: #2f005a;
+    color: white;
+}
+
+.score{
+    background-color: gray;
+    border: 2px solid white;
+    font-size: 4rem;
+    width: 7rem;
+    height: 7rem;
+    text-align: center;
+    align-content: center;
+}
