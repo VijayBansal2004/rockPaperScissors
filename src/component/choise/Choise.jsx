@@ -1,14 +1,17 @@
 import React from 'react'
 import styles from './Choise.module.css'
 
-const Choise = () => {
+const Choise = ({ handleUserGuess }) => {
+    const buttons = ['Rock', 'Paper', 'Scissors'];
     return (
         <div>
             <h2>Rock, Paper, or Scissors?</h2>
             <div className="d-flex justify-content-around">
-                <button className="btn btn-primary">Rock</button>
-                <button className="btn btn-primary">Paper</button>
-                <button className="btn btn-primary">Scissors</button>
+                {
+                    buttons?.map((button) => (
+                        <button key={button} className="btn btn-primary" onClick={() => handleUserGuess(button)}>{button}</button>
+                    ))
+                }
             </div>
         </div>
     )
