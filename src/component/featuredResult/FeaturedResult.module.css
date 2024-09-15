@@ -1,0 +1,21 @@
+.featuredContainer{
+    min-width: 220px;
+    text-align: center;
+    align-content: center;
+}
+.players{
+    font-size: 1.2rem;
+}
+
+.yourGuessedImg{
+    transform: rotate(90deg);
+}
+.computerGuessedImg{
+    transform: rotate(270deg);
+}
+
+.win{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}

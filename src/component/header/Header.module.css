@@ -1,10 +1,4 @@
 .header{
     text-align: center;
-    padding: 10px;
-    background-color: #00006c;
-    color: white;
-}
-
-.header p{
-    font-size: 1.2rem;
+    margin-bottom: 40px;
 }

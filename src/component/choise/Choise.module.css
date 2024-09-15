@@ -1,0 +1,13 @@
+.heading{
+    text-align: center;
+    margin-block: 40px;
+}
+
+.buttons{
+    font-size: 1.4rem !important;
+    padding: 10px 40px !important;
+    font-weight: 700 !important;
+    background-color: #ffffff29 !important;
+    border-color: #ffffff45 !important;
+    box-shadow: 0px 0px 43px -22px white !important;
+}

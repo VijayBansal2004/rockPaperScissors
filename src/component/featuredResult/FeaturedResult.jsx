@@ -20,28 +20,28 @@ const FeaturedResult = ({ userGuess, compGuess, win }) => {
     return (
         <>
             <div className='d-flex justify-content-between'>
-                <div>
-                    <p>You played {userGuess}</p>
+                <div className={`${styles.featuredContainer}`}>
+                    <p className={`${styles.players}`}>You played {userGuess}</p>
                     {
                         featuredImgs?.map((featuredImg) => (
-                            userGuess === featuredImg.name && <img src={featuredImg.imgPath} alt="userGuess" />
+                            userGuess === featuredImg.name && <img className={`${styles.yourGuessedImg}`} src={featuredImg.imgPath} alt="userGuess" />
 
                         ))
                     }
                     {/* <img src={ } alt="rockImg" /> */}
                 </div>
-                <div>
-                    <p>Computer played {compGuess}</p>
+                <div className={`${styles.featuredContainer}`}>
+                    <p className={`${styles.players}`}>Computer played {compGuess}</p>
                     {
                         featuredImgs?.map((featuredImg) => (
-                            compGuess === featuredImg.name && <img src={featuredImg.imgPath} alt="compGuess" />
+                            compGuess === featuredImg.name && <img className={`${styles.computerGuessedImg}`} src={featuredImg.imgPath} alt="compGuess" />
 
                         ))
                     }
                 </div>
             </div>
             <div>
-                <p>{win}</p>
+                <p className={`${styles.win}`}>{win}</p>
             </div>
         </>
     )

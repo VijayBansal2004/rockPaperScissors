@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import { Header, ScoreBoard, Choise, FeaturedResult, PreviousHistory } from './component/index'
 function App() {
@@ -10,26 +10,23 @@ function App() {
   const [userWin, setUserWin] = useState(0);
   const [computerWin, setComputerWin] = useState(0);
 
-  const [win, setWin] = useState()
+  const [win, setWin] = useState('');
+
+  const [history, sethistory] = useState([]);
 
   // user guess
   const handleUserGuess = (guess) => {
     setUserGuess(guess);
-    setCompGuess(guesses[Math.floor(Math.random() * guesses.length)])
-
-    // console.log(`User guess: ${guess}`);
-    // console.log(`computer guess ${compGuess}`);
-
-    // computerGuess();
-    gameEngine(userGuess, compGuess);
+    setCompGuess(guesses[Math.floor(Math.random() * 3)]);
   }
 
-  // computer guess
-  // const computerGuess = () => {
-  //   const cg = guesses[Math.floor(Math.random() * guesses.length)];
-  //   setCompGuess(cg);
-  //   // return Math.floor(Math.random() * guesses.length);
-  // }
+  useEffect(() => {
+    gameEngine(userGuess, compGuess);
+
+    sethistory([...history, { userGuess, compGuess, win }]);
+    console.log(history);
+  }, [userGuess, compGuess]);
+
 
   //Game Engine
 
@@ -42,14 +39,14 @@ function App() {
   // user: Scissors, computer:Paper     //user
   // user: Scissors, computer:Rock      //computer
 
-
   const gameEngine = (guess, computerGuess) => {
     // draw game
-    if (guess === computerGuess && computerGuess !== undefined) {
+    if ((guess === computerGuess) && (guess.length !== 0) && (computerGuess.length !== 0)) {
       // console.log(`Draw: your choice: ${guess}, computer guess: ${computerGuess}`);
       setWin(`Draw!`);
 
     }
+    //You won
     else if ((guess === 'Rock' && computerGuess === "Scissors") ||
       (guess === 'Paper' && computerGuess === "Rock") ||
       (guess === 'Scissors' && computerGuess === "Paper")) {
@@ -58,7 +55,7 @@ function App() {
       setUserWin(userWin + 1);
       setWin(`You won!`);
     }
-
+    //Computer won
     else if ((guess === 'Rock' && computerGuess === "Paper") ||
       (guess === 'Paper' && computerGuess === "Scissors") ||
       (guess === 'Scissors' && computerGuess === "Rock")) {
@@ -73,10 +70,12 @@ function App() {
   return (
     <>
       <Header />
-      <ScoreBoard userWin={userWin} computerWin={computerWin} />
-      <Choise handleUserGuess={handleUserGuess} />
-      <FeaturedResult userGuess={userGuess} compGuess={compGuess} win={win} />
-      <PreviousHistory userGuess={userGuess} compGuess={compGuess} win={win} />
+      <div className="background">
+        <ScoreBoard userWin={userWin} computerWin={computerWin} />
+        <Choise handleUserGuess={handleUserGuess} />
+        <FeaturedResult userGuess={userGuess} compGuess={compGuess} win={win} />
+        <PreviousHistory history={history} />
+      </div>
     </>
   )
 }

@@ -1,17 +1,10 @@
 import React from 'react'
 import styles from "./PreviousHistory.module.css"
 
-const PreviousHistory = ({ userGuess, compGuess, win }) => {
-    const history = [
-        {
-            userGuess,
-            compGuess,
-            win
-        },
-    ]
+const PreviousHistory = ({ history }) => {
 
     return (
-        <table>
+        <table className={`${styles.table}`}>
             <thead>
                 <tr>
                     <td>Your Choise</td>
