@@ -1,7 +1,15 @@
 import React from 'react'
 import styles from "./PreviousHistory.module.css"
 
-const PreviousHistory = () => {
+const PreviousHistory = ({ userGuess, compGuess, win }) => {
+    const history = [
+        {
+            userGuess,
+            compGuess,
+            win
+        },
+    ]
+
     return (
         <table>
             <thead>
@@ -12,7 +20,15 @@ const PreviousHistory = () => {
                 </tr>
             </thead>
             <tbody>
-
+                {
+                    history.map((row) => (
+                        <tr>
+                            <td>{row.userGuess}</td>
+                            <td>{row.compGuess}</td>
+                            <td>{row.win}</td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./FeaturedResult.module.css"
-const FeaturedResult = ({ userGuess, compGuess }) => {
+const FeaturedResult = ({ userGuess, compGuess, win }) => {
 
     const featuredImgs = [
         {
@@ -41,7 +41,7 @@ const FeaturedResult = ({ userGuess, compGuess }) => {
                 </div>
             </div>
             <div>
-                <p>Computer wins!!</p>
+                <p>{win}</p>
             </div>
         </>
     )
