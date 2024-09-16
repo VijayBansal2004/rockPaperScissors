@@ -1,13 +1,18 @@
-.table{
+.table {
     width: 100%;
 }
 
-.table thead tr td{
+.table thead tr td {
     font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff8c;
 }
 
-.table tbody tr td{
+.table tbody tr {
+    border-bottom: 1px solid #ffffff47;
+    line-height: 45px;
+}
+
+.table tbody tr td {
     font-size: 1.05rem;
 }

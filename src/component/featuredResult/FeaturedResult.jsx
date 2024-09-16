@@ -41,7 +41,7 @@ const FeaturedResult = ({ userGuess, compGuess, win }) => {
                 </div>
             </div>
             <div>
-                <p className={`${styles.win}`}>{win}</p>
+                <p className={`${styles.win} ${win === 'You Won!' && "userWin"} ${win === 'Computer Won!' && "userLoose"}`}>{win}</p>
             </div>
         </>
     )

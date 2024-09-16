@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import './App.css'
 import { Header, ScoreBoard, Choise, FeaturedResult, PreviousHistory } from './component/index'
+import './App.css'
 function App() {
   const guesses = ['Rock', 'Paper', 'Scissors'];
 
@@ -14,6 +14,8 @@ function App() {
 
   const [history, sethistory] = useState([]);
 
+  const [gameOver, setGameOver] = useState(false);
+
   // user guess
   const handleUserGuess = (guess) => {
     setUserGuess(guess);
@@ -22,10 +24,12 @@ function App() {
 
   useEffect(() => {
     gameEngine(userGuess, compGuess);
-
-    sethistory([...history, { userGuess, compGuess, win }]);
-    console.log(history);
   }, [userGuess, compGuess]);
+
+  useEffect(() => {
+    sethistory([...history, { userGuess, compGuess, win }]);
+    endGame();
+  }, [win]);
 
 
   //Game Engine
@@ -44,7 +48,6 @@ function App() {
     if ((guess === computerGuess) && (guess.length !== 0) && (computerGuess.length !== 0)) {
       // console.log(`Draw: your choice: ${guess}, computer guess: ${computerGuess}`);
       setWin(`Draw!`);
-
     }
     //You won
     else if ((guess === 'Rock' && computerGuess === "Scissors") ||
@@ -53,7 +56,7 @@ function App() {
       // console.log(`You Won: your choice: ${guess}, computer guess: ${computerGuess}`);
 
       setUserWin(userWin + 1);
-      setWin(`You won!`);
+      setWin(`You Won!`);
     }
     //Computer won
     else if ((guess === 'Rock' && computerGuess === "Paper") ||
@@ -63,8 +66,23 @@ function App() {
 
       setComputerWin(computerWin + 1);
       setWin(`Computer Won!`);
-
     }
+  }
+
+  const endGame = () => {
+    if (userWin === 5 || computerWin === 5) {
+      setGameOver(true);
+    }
+  }
+
+  const handleReset = () => {
+    setGameOver(false);
+    setUserGuess("");
+    setCompGuess("");
+    setUserWin(0);
+    setComputerWin(0);
+    setWin("");
+    sethistory([]);
   }
 
   return (
@@ -72,9 +90,18 @@ function App() {
       <Header />
       <div className="background">
         <ScoreBoard userWin={userWin} computerWin={computerWin} />
-        <Choise handleUserGuess={handleUserGuess} />
-        <FeaturedResult userGuess={userGuess} compGuess={compGuess} win={win} />
-        <PreviousHistory history={history} />
+        {
+          gameOver === false ?
+            <>
+              <Choise handleUserGuess={handleUserGuess} />
+              <FeaturedResult userGuess={userGuess} compGuess={compGuess} win={win} />
+              <PreviousHistory history={history} />
+            </> : <>
+              <p className={`fs-1 fw-bold text-center ${win === 'You Won!' && "userWin"} ${win === 'Computer Won!' && "userLoose"}`}>{win}</p>
+
+              <button className={`btn btn-primary resetButton`} onClick={handleReset}>Reset</button>
+            </>
+        }
       </div>
     </>
   )

@@ -16,9 +16,9 @@ const PreviousHistory = ({ history }) => {
                 {
                     history.map((row) => (
                         <tr>
-                            <td>{row.userGuess}</td>
-                            <td>{row.compGuess}</td>
-                            <td>{row.win}</td>
+                            <td className='col-4'>{row.userGuess}</td>
+                            <td className='col-4'>{row.compGuess}</td>
+                            <td className='col-4'>{row.win}</td>
                         </tr>
                     ))
                 }
